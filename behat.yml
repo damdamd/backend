@@ -1,0 +1,20 @@
+default:
+  extensions:
+    DVDoug\Behat\CodeCoverage\Extension:
+      filter:
+        include:
+          directories:
+            'src': ~
+      reports:
+        text:
+          showColors: true
+          showOnlySummary: true
+        html:
+          target: features/output/coverage
+
+  suites:
+    default:
+      paths:
+        - '%paths.base%/features'
+      contexts:
+        - FeatureContext

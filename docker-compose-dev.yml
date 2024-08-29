@@ -1,0 +1,7 @@
+services:
+  coverage:
+    image: nginx
+    volumes:
+      - ./features/output/coverage:/usr/share/nginx/html
+    ports:
+      - "8081:80"

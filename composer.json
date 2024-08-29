@@ -1,0 +1,22 @@
+{
+    "name": "damien/backend",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "damien",
+            "email": "dam.rousseaux@eukles.com"
+        }
+    ],
+    "require-dev": {
+        "behat/behat": "^3.14",
+        "dvdoug/behat-code-coverage": "^5.3"
+    },
+    "require": {
+        "fakerphp/faker": "^1.23"
+    }
+}
