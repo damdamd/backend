@@ -3,16 +3,23 @@
 namespace App\Domain\Entity;
 
 use App\Domain\Entity\Enum\VehicleType;
-use App\Domain\ValueObject\VehiclePlateNumber;
+use App\Domain\Entity\ValueObject\VehiclePlateNumber;
+use Doctrine\ORM\Mapping as ORM;
 use DomainException;
 
+#[ORM\Entity]
 class Vehicle
 {
 
+    #[ORM\OneToOne(targetEntity: Location::class)]
+    #[ORM\JoinColumn(name: 'location_id', referencedColumnName: 'location_id')]
     private ?Location $location = null;
 
     public function __construct(
+        #[ORM\Id]
+        #[ORM\Column(type: 'VehiclePlateNumber')]
         private readonly VehiclePlateNumber $vehiclePlateNumber,
+        #[ORM\Column(enumType: VehicleType::class)]
         private readonly VehicleType        $vehicleType
     )
     {
@@ -21,6 +28,11 @@ class Vehicle
     public function getVehiclePlateNumber(): VehiclePlateNumber
     {
         return $this->vehiclePlateNumber;
+    }
+
+    public function equals(Vehicle $vehicle): bool
+    {
+        return $vehicle->getVehiclePlateNumber()->equals($this->vehiclePlateNumber);
     }
 
     public function park(Location $location): void

@@ -2,7 +2,7 @@
 
 namespace App\App\Command;
 
-use App\Domain\ValueObject\UserId;
+use App\Domain\Entity\ValueObject\UserId;
 
 readonly class CreateFleetCommand
 {

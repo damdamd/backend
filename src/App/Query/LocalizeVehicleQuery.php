@@ -2,8 +2,8 @@
 
 namespace App\App\Query;
 
-use App\Domain\ValueObject\FleetId;
-use App\Domain\ValueObject\VehiclePlateNumber;
+use App\Domain\Entity\ValueObject\FleetId;
+use App\Domain\Entity\ValueObject\VehiclePlateNumber;
 
 readonly class LocalizeVehicleQuery
 {

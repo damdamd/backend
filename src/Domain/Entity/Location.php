@@ -2,16 +2,23 @@
 
 namespace App\Domain\Entity;
 
-use App\Domain\ValueObject\Latitude;
-use App\Domain\ValueObject\LocationId;
-use App\Domain\ValueObject\Longitude;
+use App\Domain\Entity\ValueObject\Latitude;
+use App\Domain\Entity\ValueObject\LocationId;
+use App\Domain\Entity\ValueObject\Longitude;
+use Doctrine\ORM\Mapping as ORM;
 
-readonly class Location
+#[ORM\Entity]
+class Location
 {
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'LocationId')]
     private LocationId $locationId;
 
     public function __construct(
+        #[ORM\Column(type: 'Longitude')]
         private Longitude $longitude,
+        #[ORM\Column(type: 'Latitude')]
         private Latitude  $latitude,
     )
     {

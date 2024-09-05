@@ -4,7 +4,9 @@ namespace App\App\Command;
 
 use App\Domain\Repository\LocationRepositoryInterface;
 use App\Domain\Repository\VehicleRepositoryInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
+#[AsMessageHandler(bus: 'command.bus')]
 readonly class ParkVehicle
 {
     public function __construct(
@@ -16,7 +18,7 @@ readonly class ParkVehicle
 
     public function __invoke(ParkVehicleCommand $command): void
     {
-        $location = $this->locationRepository->getByLocationId($command->locationId);
+        $location = $this->locationRepository->findByLocationId($command->locationId);
         $vehicle = $this->vehicleRepository->getByPlateNumber($command->vehiclePlateNumber);
 
         $vehicle->park($location);

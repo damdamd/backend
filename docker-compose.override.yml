@@ -1,0 +1,22 @@
+services:
+  php:
+    user: "${UID}"
+    build:
+      context: .
+      args:
+        - UID=$UID
+  ###> doctrine/doctrine-bundle ###
+  database:
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./config/docker/postgres:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_MULTIPLE_DATABASES=app_test
+  ###< doctrine/doctrine-bundle ###
+  coverage:
+    image: nginx
+    volumes:
+      - ./features/output/coverage:/usr/share/nginx/html
+    ports:
+      - "8081:80"

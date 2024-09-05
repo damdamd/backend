@@ -2,8 +2,8 @@
 
 namespace App\App\Command;
 
-use App\Domain\ValueObject\Latitude;
-use App\Domain\ValueObject\Longitude;
+use App\Domain\Entity\ValueObject\Latitude;
+use App\Domain\Entity\ValueObject\Longitude;
 
 readonly class CreateLocationCommand
 {

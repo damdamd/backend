@@ -3,11 +3,11 @@
 namespace App\Domain\Repository;
 
 use App\Domain\Entity\Location;
-use App\Domain\ValueObject\LocationId;
+use App\Domain\Entity\ValueObject\LocationId;
 
 interface LocationRepositoryInterface
 {
-    public function getByLocationId(LocationId $locationId): Location;
+    public function findByLocationId(LocationId $locationId): Location;
 
     public function create(Location $location): void;
 }

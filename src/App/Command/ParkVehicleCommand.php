@@ -2,8 +2,8 @@
 
 namespace App\App\Command;
 
-use App\Domain\ValueObject\LocationId;
-use App\Domain\ValueObject\VehiclePlateNumber;
+use App\Domain\Entity\ValueObject\LocationId;
+use App\Domain\Entity\ValueObject\VehiclePlateNumber;
 
 readonly class ParkVehicleCommand
 {

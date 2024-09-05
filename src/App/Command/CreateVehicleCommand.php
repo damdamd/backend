@@ -3,7 +3,7 @@
 namespace App\App\Command;
 
 use App\Domain\Entity\Enum\VehicleType;
-use App\Domain\ValueObject\VehiclePlateNumber;
+use App\Domain\Entity\ValueObject\VehiclePlateNumber;
 
 readonly class CreateVehicleCommand
 {

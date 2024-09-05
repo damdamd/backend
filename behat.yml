@@ -1,5 +1,14 @@
 default:
+  suites:
+    default:
+      contexts:
+        - Tests\Behat\FeatureContext
   extensions:
+    FriendsOfBehat\SymfonyExtension:
+      bootstrap: 'tests/bootstrap.php'
+      kernel:
+        environment: 'test'
+        debug: true
     DVDoug\Behat\CodeCoverage\Extension:
       filter:
         include:
@@ -11,10 +20,3 @@ default:
           showOnlySummary: true
         html:
           target: features/output/coverage
-
-  suites:
-    default:
-      paths:
-        - '%paths.base%/features'
-      contexts:
-        - FeatureContext

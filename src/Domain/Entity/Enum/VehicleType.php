@@ -2,10 +2,10 @@
 
 namespace App\Domain\Entity\Enum;
 
-enum VehicleType
+enum VehicleType: string
 {
-    case CAR;
-    case TRUCK;
-    case MOTOCYCLE;
-    case OTHER;
+    case CAR = 'car';
+    case TRUCK = 'truck';
+    case MOTOCYCLE = 'motocycle';
+    case OTHER = 'other';
 }

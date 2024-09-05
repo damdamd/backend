@@ -2,8 +2,8 @@
 
 namespace App\Domain\Repository;
 
+use App\Domain\Entity\ValueObject\VehiclePlateNumber;
 use App\Domain\Entity\Vehicle;
-use App\Domain\ValueObject\VehiclePlateNumber;
 
 interface VehicleRepositoryInterface
 {

@@ -2,17 +2,31 @@
 
 namespace App\Domain\Entity;
 
-use App\Domain\ValueObject\FleetId;
-use App\Domain\ValueObject\UserId;
-use App\Domain\ValueObject\VehiclePlateNumber;
+use App\Domain\Entity\ValueObject\FleetId;
+use App\Domain\Entity\ValueObject\UserId;
+use App\Domain\Entity\ValueObject\VehiclePlateNumber;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
+use Traversable;
 
+#[ORM\Entity]
 class Fleet
 {
-    /** @var Vehicle[] */
-    private array $vehicles = [];
-    private readonly FleetId $fleetId;
+    // Todo find a way to use custom collection
+    /** @var PersistentCollection<int,Vehicle> */
+    #[ORM\JoinTable(name: 'fleets_vehicles')]
+    #[ORM\JoinColumn(name: 'fleet_id', referencedColumnName: 'fleet_id')]
+    #[ORM\InverseJoinColumn(name: 'vehicle_plate_number', referencedColumnName: 'vehicle_plate_number')]
+    #[ORM\ManyToMany(targetEntity: Vehicle::class)]
+    private PersistentCollection $vehicles;
+
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'FleetId')]
+    private FleetId $fleetId;
 
     public function __construct(
+        #[ORM\Column(type: 'UserId')]
         private readonly UserId $userId,
     )
     {
@@ -20,25 +34,35 @@ class Fleet
 
     public function addVehicle(Vehicle $vehicle): void
     {
-        $this->vehicles[(string)$vehicle->getVehiclePlateNumber()] = $vehicle;
+        $this->vehicles->add($vehicle);
     }
 
-    public function ownsVehicle(Vehicle $vehicle): bool
+    public function ownsVehicle(Vehicle $expectedVehicle): bool
     {
-        return in_array($vehicle, $this->vehicles);
+        foreach ($this->vehicles as $vehicle) {
+            if ($vehicle->equals($expectedVehicle)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
-     * @return Vehicle[]
+     * @return Traversable<Vehicle>
      */
-    public function getVehicles(): array
+    public function getVehicles(): Traversable
     {
         return $this->vehicles;
     }
 
     public function contains(VehiclePlateNumber $vehiclePlateNumber): bool
     {
-        return isset($this->vehicles[(string)$vehiclePlateNumber]);
+        foreach ($this->vehicles as $vehicle) {
+            if ($vehicle->getVehiclePlateNumber()->equals($vehiclePlateNumber)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public function getFleetId(): FleetId

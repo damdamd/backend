@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\ValueObject;
+namespace App\Domain\Entity\ValueObject;
 
-class Latitude
+readonly class Latitude
 {
     const string REGEX = '#^([-+])??(90(\.0+?)??|([0-8]??\d)(\.\d+?)??)$#';
 

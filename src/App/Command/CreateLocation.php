@@ -3,9 +3,11 @@
 namespace App\App\Command;
 
 use App\Domain\Entity\Location;
+use App\Domain\Entity\ValueObject\LocationId;
 use App\Domain\Repository\LocationRepositoryInterface;
-use App\Domain\ValueObject\LocationId;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
+#[AsMessageHandler(bus: 'command.bus')]
 readonly class CreateLocation
 {
     public function __construct(private LocationRepositoryInterface $locationRepository)

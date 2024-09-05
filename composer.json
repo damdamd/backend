@@ -1,22 +1,78 @@
 {
-    "name": "damien/backend",
-    "type": "project",
-    "autoload": {
-        "psr-4": {
-            "App\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "damien",
-            "email": "dam.rousseaux@eukles.com"
-        }
-    ],
-    "require-dev": {
-        "behat/behat": "^3.14",
-        "dvdoug/behat-code-coverage": "^5.3"
-    },
-    "require": {
-        "fakerphp/faker": "^1.23"
+  "name": "damien/backend",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "authors": [
+    {
+      "name": "damien",
+      "email": "dam.rousseaux@eukles.com"
+    }
+  ],
+  "require-dev": {
+    "behat/behat": "^3.14",
+    "doctrine/doctrine-fixtures-bundle": "^3.6",
+    "dvdoug/behat-code-coverage": "^5.3",
+    "fakerphp/faker": "^1.23",
+    "friends-of-behat/symfony-extension": "^2.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": false,
+      "symfony/flex": true,
+      "symfony/runtime": true
+    },
+    "sort-packages": true
+  },
+  "scripts": {
+    "auto-scripts": {
+      "cache:clear": "symfony-cmd"
+    },
+    "post-install-cmd": [
+      "@auto-scripts"
+    ],
+    "post-update-cmd": [
+      "@auto-scripts"
+    ]
+  },
+  "conflict": {
+    "symfony/symfony": "*"
+  },
+  "extra": {
+    "symfony": {
+      "allow-contrib": false,
+      "require": "7.1.*"
+    }
+  },
+  "replace": {
+    "symfony/polyfill-ctype": "*",
+    "symfony/polyfill-iconv": "*",
+    "symfony/polyfill-php72": "*",
+    "symfony/polyfill-php73": "*",
+    "symfony/polyfill-php74": "*",
+    "symfony/polyfill-php80": "*",
+    "symfony/polyfill-php81": "*",
+    "symfony/polyfill-php82": "*"
+  },
+  "require": {
+    "doctrine/dbal": "^3",
+    "doctrine/doctrine-bundle": "^2.13",
+    "doctrine/doctrine-migrations-bundle": "^3.3",
+    "doctrine/orm": "^3.2",
+    "symfony/console": "7.1.*",
+    "symfony/dotenv": "7.1.*",
+    "symfony/flex": "^2",
+    "symfony/framework-bundle": "7.1.*",
+    "symfony/messenger": "7.1.*",
+    "symfony/runtime": "7.1.*",
+    "symfony/yaml": "7.1.*"
+  }
 }

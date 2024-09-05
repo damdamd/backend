@@ -3,9 +3,11 @@
 namespace App\App\Command;
 
 use App\Domain\Entity\Fleet;
+use App\Domain\Entity\ValueObject\FleetId;
 use App\Domain\Repository\FleetRepositoryInterface;
-use App\Domain\ValueObject\FleetId;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
+#[AsMessageHandler(bus: 'command.bus')]
 readonly class CreateFleet
 {
     public function __construct(private FleetRepositoryInterface $fleetRepository)
