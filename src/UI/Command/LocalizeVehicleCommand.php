@@ -43,6 +43,7 @@ class LocalizeVehicleCommand extends Command
             $location = $this->handle($query);
         } catch (HandlerFailedException $handlerFailedException) {
             $output->write($handlerFailedException->getPrevious()->getMessage());
+
             return Command::FAILURE;
         }
 

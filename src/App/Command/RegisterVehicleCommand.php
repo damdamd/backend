@@ -8,9 +8,8 @@ use App\Domain\Entity\ValueObject\VehiclePlateNumber;
 readonly class RegisterVehicleCommand
 {
     public function __construct(
-        public FleetId            $fleetId,
-        public VehiclePlateNumber $vehiclePlateNumber
-    )
-    {
+        public FleetId $fleetId,
+        public VehiclePlateNumber $vehiclePlateNumber,
+    ) {
     }
 }

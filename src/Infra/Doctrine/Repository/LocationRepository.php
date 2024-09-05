@@ -7,8 +7,10 @@ use App\Domain\Entity\ValueObject\LocationId;
 use App\Domain\Repository\LocationRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use DomainException;
 
+/**
+ * @template-extends ServiceEntityRepository<Location>
+ */
 class LocationRepository extends ServiceEntityRepository implements LocationRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
@@ -18,7 +20,7 @@ class LocationRepository extends ServiceEntityRepository implements LocationRepo
 
     public function findByLocationId(LocationId $locationId): Location
     {
-        return $this->find($locationId) ?? throw new DomainException('Location not found');
+        return $this->find($locationId) ?? throw new \DomainException('Location not found');
     }
 
     public function create(Location $location): void

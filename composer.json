@@ -22,7 +22,10 @@
     "doctrine/doctrine-fixtures-bundle": "^3.6",
     "dvdoug/behat-code-coverage": "^5.3",
     "fakerphp/faker": "^1.23",
-    "friends-of-behat/symfony-extension": "^2.0"
+    "friends-of-behat/symfony-extension": "^2.0",
+    "friendsofphp/php-cs-fixer": "^3.64",
+    "phpstan/phpstan": "^1.12",
+    "qossmic/deptrac": "^2.0"
   },
   "config": {
     "allow-plugins": {

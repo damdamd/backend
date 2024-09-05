@@ -14,5 +14,8 @@ interface FleetRepositoryInterface
 
     public function create(Fleet $fleet): void;
 
+    /**
+     * @return Fleet[]
+     */
     public function findByUserId(UserId $userId): array;
 }

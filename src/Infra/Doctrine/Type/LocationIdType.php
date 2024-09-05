@@ -8,7 +8,7 @@ use Doctrine\DBAL\Types\Type;
 
 class LocationIdType extends Type
 {
-    const string NAME = 'LocationId';
+    public const string NAME = 'LocationId';
 
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
@@ -16,21 +16,22 @@ class LocationIdType extends Type
     }
 
     /**
-     * @param null|LocationId $value
+     * @param LocationId|null $value
      */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): null|int
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?int
     {
         return $value?->toInt();
     }
 
     /**
-     * @param null|int $value
+     * @param int|null $value
      */
-    public function convertToPHPValue($value, AbstractPlatform $platform): null|LocationId
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?LocationId
     {
         if (null === $value) {
             return null;
         }
+
         return new LocationId($value);
     }
 

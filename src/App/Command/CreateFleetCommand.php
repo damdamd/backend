@@ -7,8 +7,7 @@ use App\Domain\Entity\ValueObject\UserId;
 readonly class CreateFleetCommand
 {
     public function __construct(
-        public UserId $userId
-    )
-    {
+        public UserId $userId,
+    ) {
     }
 }

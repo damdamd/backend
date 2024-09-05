@@ -4,7 +4,7 @@ namespace App\Domain\Entity\ValueObject;
 
 readonly class Latitude
 {
-    const string REGEX = '#^([-+])??(90(\.0+?)??|([0-8]??\d)(\.\d+?)??)$#';
+    public const string REGEX = '#^([-+])??(90(\.0+?)??|([0-8]??\d)(\.\d+?)??)$#';
 
     public function __construct(public string $latitude)
     {

@@ -9,8 +9,7 @@ readonly class CreateLocationCommand
 {
     public function __construct(
         public Longitude $longitude,
-        public Latitude  $latitude
-    )
-    {
+        public Latitude $latitude,
+    ) {
     }
 }

@@ -13,15 +13,14 @@ class Location
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'LocationId')]
-    private LocationId $locationId;
+    protected LocationId $locationId;
 
     public function __construct(
         #[ORM\Column(type: 'Longitude')]
         private Longitude $longitude,
         #[ORM\Column(type: 'Latitude')]
-        private Latitude  $latitude,
-    )
-    {
+        private Latitude $latitude,
+    ) {
     }
 
     public function equals(Location $location): bool

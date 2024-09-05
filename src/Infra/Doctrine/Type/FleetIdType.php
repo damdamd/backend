@@ -6,10 +6,9 @@ use App\Domain\Entity\ValueObject\FleetId;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
 
-{}
 class FleetIdType extends Type
 {
-    const string NAME = 'FleetId';
+    public const string NAME = 'FleetId';
 
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {

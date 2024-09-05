@@ -9,8 +9,7 @@ readonly class ParkVehicleCommand
 {
     public function __construct(
         public VehiclePlateNumber $vehiclePlateNumber,
-        public LocationId         $locationId
-    )
-    {
+        public LocationId $locationId,
+    ) {
     }
 }

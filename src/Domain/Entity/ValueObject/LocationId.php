@@ -8,7 +8,6 @@ readonly class LocationId
     {
     }
 
-
     public function toInt(): int
     {
         return $this->locationId;
@@ -21,6 +20,6 @@ readonly class LocationId
 
     public function __toString(): string
     {
-        return (string)$this->locationId;
+        return (string) $this->locationId;
     }
 }

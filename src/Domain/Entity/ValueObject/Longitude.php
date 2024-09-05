@@ -4,7 +4,7 @@ namespace App\Domain\Entity\ValueObject;
 
 class Longitude
 {
-    const string REGEX = '#^([-+])??(180(\.0+?)??|(1[0-7]|\d)\d??(\.\d+?)??)$#';
+    public const string REGEX = '#^([-+])??(180(\.0+?)??|(1[0-7]|\d)\d??(\.\d+?)??)$#';
 
     public function __construct(public string $longitude)
     {

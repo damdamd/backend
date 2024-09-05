@@ -18,6 +18,7 @@ readonly class CreateLocation
     {
         $location = new Location($command->longitude, $command->latitude);
         $this->locationRepository->create($location);
+
         return $location->getLocationId();
     }
 }

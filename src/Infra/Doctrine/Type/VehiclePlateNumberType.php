@@ -8,7 +8,7 @@ use Doctrine\DBAL\Types\Type;
 
 class VehiclePlateNumberType extends Type
 {
-    const string NAME = 'VehiclePlateNumber';
+    public const string NAME = 'VehiclePlateNumber';
 
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
@@ -20,7 +20,7 @@ class VehiclePlateNumberType extends Type
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform): string
     {
-        return (string)$value;
+        return (string) $value;
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform): VehiclePlateNumber

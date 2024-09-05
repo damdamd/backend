@@ -17,6 +17,6 @@ readonly class VehiclePlateNumber
     public function equals(VehiclePlateNumber $vehiclePlateNumber): bool
     {
         // todo check if equality can be done directly on object without this method
-        return (string)$vehiclePlateNumber === $this->plateNumber;
+        return (string) $vehiclePlateNumber === $this->plateNumber;
     }
 }

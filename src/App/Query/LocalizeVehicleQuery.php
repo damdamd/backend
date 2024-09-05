@@ -9,8 +9,7 @@ readonly class LocalizeVehicleQuery
 {
     public function __construct(
         public FleetId $fleetId,
-        public VehiclePlateNumber $vehiclePlateNumber
-    )
-    {
+        public VehiclePlateNumber $vehiclePlateNumber,
+    ) {
     }
 }

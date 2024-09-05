@@ -11,9 +11,8 @@ readonly class ParkVehicle
 {
     public function __construct(
         private LocationRepositoryInterface $locationRepository,
-        private VehicleRepositoryInterface  $vehicleRepository
-    )
-    {
+        private VehicleRepositoryInterface $vehicleRepository,
+    ) {
     }
 
     public function __invoke(ParkVehicleCommand $command): void

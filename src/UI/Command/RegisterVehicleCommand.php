@@ -16,7 +16,6 @@ use Symfony\Component\Messenger\MessageBusInterface;
 #[AsCommand(name: 'register-vehicle', description: 'a command to register a vehicle to a fleet')]
 class RegisterVehicleCommand extends Command
 {
-
     public function __construct(private readonly MessageBusInterface $commandBus)
     {
         parent::__construct();
@@ -40,6 +39,7 @@ class RegisterVehicleCommand extends Command
             $this->commandBus->dispatch(new \App\App\Command\RegisterVehicleCommand($fleetId, $vehiclePlateNumber));
         } catch (HandlerFailedException $handlerFailedException) {
             $output->write($handlerFailedException->getPrevious()->getMessage());
+
             return Command::FAILURE;
         }
 

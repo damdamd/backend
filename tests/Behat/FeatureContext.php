@@ -18,7 +18,6 @@ use App\Domain\Repository\LocationRepositoryInterface;
 use App\Domain\Repository\VehicleRepositoryInterface;
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
 use Faker\Factory;
 
 class FeatureContext implements Context
@@ -37,12 +36,11 @@ class FeatureContext implements Context
     private FleetId $newFleetId;
 
     public function __construct(
-        private readonly EntityManagerInterface      $entityManager,
-        private readonly VehicleRepositoryInterface  $vehicleRepository,
-        private readonly FleetRepositoryInterface    $fleetRepository,
+        private readonly EntityManagerInterface $entityManager,
+        private readonly VehicleRepositoryInterface $vehicleRepository,
+        private readonly FleetRepositoryInterface $fleetRepository,
         private readonly LocationRepositoryInterface $locationRepository,
-    )
-    {
+    ) {
         $this->faker = Factory::create();
     }
 
@@ -61,7 +59,6 @@ class FeatureContext implements Context
     public function iTryToRegisterThisVehicleIntoMyFleet(): void
     {
         $this->iRegisterThisVehicleIntoMyFleet();
-
     }
 
     /**
@@ -82,18 +79,20 @@ class FeatureContext implements Context
 
     /**
      * @Then I should be informed this vehicle has already been registered into my fleet
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     public function iShouldBeInformedThisVehicleHasAlreadyBeenRegisteredIntoMyFleet(): void
     {
         if (!isset($this->output) || 'Vehicle has already been registered' !== $this->output) {
-            throw new Exception('No message informs that vehicle is already registered');
+            throw new \Exception('No message informs that vehicle is already registered');
         }
     }
 
     /**
      * @Then this vehicle should be part of my vehicle fleet
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     public function thisVehicleShouldBePartOfMyVehicleFleet(): void
     {
@@ -104,7 +103,7 @@ class FeatureContext implements Context
             'vehiclePlateNumber' => $this->vehiclePlateNumber,
         ]);
         if (false === $myFleet->ownsVehicle($vehicle)) {
-            throw new Exception('This vehicle is not part of my fleet.');
+            throw new \Exception('This vehicle is not part of my fleet.');
         }
     }
 
@@ -147,7 +146,7 @@ class FeatureContext implements Context
      */
     public function aVehicle(): void
     {
-        $this->vehiclePlateNumber = new VehiclePlateNumber($this->faker->word() . $this->faker->randomLetter() . $this->faker->randomLetter());
+        $this->vehiclePlateNumber = new VehiclePlateNumber($this->faker->word().$this->faker->randomLetter().$this->faker->randomLetter());
         $vehicle = new Vehicle(
             $this->vehiclePlateNumber,
             $this->faker->randomElement(VehicleType::cases())
@@ -195,7 +194,8 @@ class FeatureContext implements Context
 
     /**
      * @Then the known location of my vehicle should verify this location
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     public function theKnownLocationOfMyVehicleShouldVerifyThisLocation(): void
     {
@@ -209,7 +209,7 @@ class FeatureContext implements Context
         $longitudeMatch = $output[1] === $this->expectedLongitude;
 
         if (!$latitudeMatch || !$longitudeMatch) {
-            throw new Exception('My vehicle is not parked to this location');
+            throw new \Exception('My vehicle is not parked to this location');
         }
     }
 
@@ -248,17 +248,19 @@ class FeatureContext implements Context
 
     /**
      * @Then I should be informed that my vehicle is already parked at this location
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     public function iShouldBeInformedThatMyVehicleIsAlreadyParkedAtThisLocation(): void
     {
         if (!isset($this->output) || 'This vehicle is already parked at this location' !== $this->output) {
-            throw new Exception('No message informs me that my vehicle is already parked at this location.');
+            throw new \Exception('No message informs me that my vehicle is already parked at this location.');
         }
     }
 
     /**
-     * todo maybe use symfony console test
+     * todo maybe use symfony console test.
+     *
      * @When /^I query my vehicle location$/
      */
     public function iQueryMyVehicleLocation(): void
@@ -282,18 +284,19 @@ class FeatureContext implements Context
 
     /**
      * @Then /^I receive the location longitude and latitude$/
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     public function iReceiveTheLocationLongitudeAndLatitude(): void
     {
         if (false === isset($this->location)) {
-            throw new Exception('I didn\'t receive the location longitude and latitude');
+            throw new \Exception('I didn\'t receive the location longitude and latitude');
         }
-        if ((string)$this->location->getLatitude() !== $this->expectedLatitude) {
-            throw new Exception('This latitude is not matching the expected one');
+        if ((string) $this->location->getLatitude() !== $this->expectedLatitude) {
+            throw new \Exception('This latitude is not matching the expected one');
         }
-        if ((string)$this->location->getLongitude() !== $this->expectedLongitude) {
-            throw new Exception('This longitude is not matching the expected one');
+        if ((string) $this->location->getLongitude() !== $this->expectedLongitude) {
+            throw new \Exception('This longitude is not matching the expected one');
         }
     }
 
@@ -309,17 +312,17 @@ class FeatureContext implements Context
         );
         exec($command, $output);
         $this->output = $output[0];
-
     }
 
     /**
      * @Then /^I should be informed that the vehicle doesn't belong to this fleet$/
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     public function iShouldBeInformedThatTheVehicleDoesnTBelongToThisFleet(): void
     {
         if ('This vehicle doesn\'t belongs to this fleet' !== $this->output) {
-            throw new Exception('No message informs me that the vehicle doesn\'t belong to this fleet');
+            throw new \Exception('No message informs me that the vehicle doesn\'t belong to this fleet');
         }
     }
 
@@ -333,17 +336,18 @@ class FeatureContext implements Context
 
     /**
      * @Then /^I can retrieve this fleet from my fleet list$/
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     public function iCanRetrieveThisFleetFromMyFleetList(): void
     {
         $createdFleet = $this->fleetRepository->findOneBy([
             'fleetId' => $this->newFleetId,
-            'userId' => $this->myself
+            'userId' => $this->myself,
         ]);
 
         if (null === $createdFleet) {
-            throw new Exception('Impossible to retrieve this fleet from my fleets');
+            throw new \Exception('Impossible to retrieve this fleet from my fleets');
         }
     }
 
@@ -358,22 +362,24 @@ class FeatureContext implements Context
 
     /**
      * @Then /^I can't retrieve this fleet from my fleet list$/
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     public function iCanTRetrieveThisFleetFromMyFleetList(): void
     {
         $createdFleet = $this->fleetRepository->findOneBy([
             'fleetId' => $this->newFleetId,
-            'userId' => $this->myself
+            'userId' => $this->myself,
         ]);
         if (null !== $createdFleet) {
-            throw new Exception('fleet retrieves from my fleets');
+            throw new \Exception('fleet retrieves from my fleets');
         }
     }
 
     private function createFleet(UserId $userId): FleetId
     {
         exec(sprintf('./fleet create %u', $userId->toInt()), $output);
+
         return new FleetId($output[0]);
     }
 }

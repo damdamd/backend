@@ -8,7 +8,6 @@ readonly class FleetId
     {
     }
 
-
     public function toInt(): int
     {
         return $this->id;
@@ -16,7 +15,7 @@ readonly class FleetId
 
     public function __toString(): string
     {
-        return (string)$this->id;
+        return (string) $this->id;
     }
 
     public function equals(FleetId $fleetId): bool

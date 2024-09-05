@@ -9,8 +9,7 @@ readonly class CreateVehicleCommand
 {
     public function __construct(
         public VehiclePlateNumber $vehiclePlateNumber,
-        public VehicleType        $vehicleType
-    )
-    {
+        public VehicleType $vehicleType,
+    ) {
     }
 }

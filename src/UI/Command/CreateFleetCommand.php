@@ -37,7 +37,7 @@ class CreateFleetCommand extends Command
 
         $fleetId = $this->handle(new \App\App\Command\CreateFleetCommand($userId));
 
-        $output->writeln((string)$fleetId->toInt());
+        $output->writeln((string) $fleetId->toInt());
 
         return Command::SUCCESS;
     }

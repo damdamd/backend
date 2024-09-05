@@ -8,7 +8,7 @@ use Doctrine\DBAL\Types\Type;
 
 class LongitudeType extends Type
 {
-    const string NAME = 'Longitude';
+    public const string NAME = 'Longitude';
 
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
@@ -20,7 +20,7 @@ class LongitudeType extends Type
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform): string
     {
-        return (string)$value;
+        return (string) $value;
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform): Longitude

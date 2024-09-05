@@ -9,7 +9,6 @@ readonly class FleetList
 {
     public function __construct(private FleetRepositoryInterface $fleetRepository)
     {
-
     }
 
     /**

@@ -5,12 +5,10 @@ namespace App\Domain\Entity;
 use App\Domain\Entity\Enum\VehicleType;
 use App\Domain\Entity\ValueObject\VehiclePlateNumber;
 use Doctrine\ORM\Mapping as ORM;
-use DomainException;
 
 #[ORM\Entity]
 class Vehicle
 {
-
     #[ORM\OneToOne(targetEntity: Location::class)]
     #[ORM\JoinColumn(name: 'location_id', referencedColumnName: 'location_id')]
     private ?Location $location = null;
@@ -20,9 +18,8 @@ class Vehicle
         #[ORM\Column(type: 'VehiclePlateNumber')]
         private readonly VehiclePlateNumber $vehiclePlateNumber,
         #[ORM\Column(enumType: VehicleType::class)]
-        private readonly VehicleType        $vehicleType
-    )
-    {
+        protected readonly VehicleType $vehicleType,
+    ) {
     }
 
     public function getVehiclePlateNumber(): VehiclePlateNumber
@@ -38,7 +35,7 @@ class Vehicle
     public function park(Location $location): void
     {
         if (null !== $this->location && $this->location->equals($location)) {
-            throw new DomainException('This vehicle is already parked at this location');
+            throw new \DomainException('This vehicle is already parked at this location');
         }
         $this->location = $location;
     }

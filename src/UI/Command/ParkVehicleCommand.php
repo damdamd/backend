@@ -40,6 +40,7 @@ class ParkVehicleCommand extends Command
             $this->commandBus->dispatch($command);
         } catch (HandlerFailedException $handlerFailedException) {
             $output->write($handlerFailedException->getPrevious()->getMessage());
+
             return Command::FAILURE;
         }
 

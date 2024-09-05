@@ -8,7 +8,7 @@ use Doctrine\DBAL\Types\Type;
 
 class UserIdType extends Type
 {
-    const string NAME = 'UserId';
+    public const string NAME = 'UserId';
 
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {

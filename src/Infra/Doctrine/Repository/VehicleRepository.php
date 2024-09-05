@@ -7,8 +7,10 @@ use App\Domain\Entity\Vehicle;
 use App\Domain\Repository\VehicleRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use DomainException;
 
+/**
+ * @template-extends ServiceEntityRepository<Vehicle>
+ */
 class VehicleRepository extends ServiceEntityRepository implements VehicleRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
@@ -18,7 +20,7 @@ class VehicleRepository extends ServiceEntityRepository implements VehicleReposi
 
     public function getByPlateNumber(VehiclePlateNumber $vehiclePlateNumber): Vehicle
     {
-        return $this->find(['vehiclePlateNumber' => $vehiclePlateNumber]) ?? throw new DomainException('Vehicle not found');
+        return $this->find(['vehiclePlateNumber' => $vehiclePlateNumber]) ?? throw new \DomainException('Vehicle not found');
     }
 
     public function save(Vehicle $vehicle): void

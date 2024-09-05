@@ -1,0 +1,46 @@
+deptrac:
+    paths:
+        - ./src
+    layers:
+        # Layer definition
+        - name: Domain
+          collectors:
+              - type: directory
+                value: src/Domain/.*
+
+        - name: Application
+          collectors:
+              - type: directory
+                value: src/App/.*
+
+        - name: Infrastructure
+          collectors:
+              - type: directory
+                value: src/Infra/.*
+
+        - name: UI
+          collectors:
+              - type: directory
+                value: src/UI/.*
+
+        # Vendor
+        - name: DomainVendor
+          collectors:
+              - type: classLike
+                value: Doctrine\\ORM\\.*
+
+        - name: Vendor
+          collectors:
+              - type: classLike
+                value: Symfony\\.*'
+
+    ruleset:
+        Domain:
+            - DomainVendor
+        Application:
+            - +Domain
+        Infrastructure:
+            - +Application
+            - Vendor
+        UI:
+            - +Infrastructure
